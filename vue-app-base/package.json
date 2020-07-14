@@ -12,6 +12,7 @@
     "vue": "^2.6.11"
   },
   "devDependencies": {
+    "webpack": "^4.43.0"
   },
   "eslintConfig": {
     "root": true,
