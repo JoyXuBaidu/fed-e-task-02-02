@@ -1,12 +1,11 @@
 /** @type {import('webpack').Configuration} */
 const CommonConfig = require('./webpack.common');
 
-const webpack = require('webpack');
 const { merge } = require('webpack-merge');
 
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
 
-module.exports = merge({
+module.exports = merge(CommonConfig,{
   mode: 'production',
   devtool: false,
   module: {
@@ -29,9 +28,6 @@ module.exports = merge({
   plugins: [
     new ImageminPlugin({
       test: /\.(jpe?g|png|gif|svg)$/
-    }),
-    new webpack.DefinePlugin({
-      BASE_URL : JSON.stringify("./public/")
     })
   ]
-},CommonConfig)
+})
