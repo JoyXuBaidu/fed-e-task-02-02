@@ -4,11 +4,12 @@ const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: './src/main.js',
   output: {
-    filename: '[contenthash:8].bundle.js',
+    filename: './js/bundle.[contenthash:8].js',
     path: `${__dirname}/dist`
   },
   module:{
@@ -19,7 +20,7 @@ module.exports = {
       },
       {
         test:/\.less$/,
-        use: ['css-loader','less-loader']
+        use: [MiniCssExtractPlugin.loader,'css-loader','less-loader']
       },
       {
         test:/\.css$/,
@@ -36,6 +37,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './public/index.html',
       filename: 'index.html'
+    }),
+    new MiniCssExtractPlugin({
+      filename: './css/[name].[contenthash:8].css'
     })
   ]
 }
