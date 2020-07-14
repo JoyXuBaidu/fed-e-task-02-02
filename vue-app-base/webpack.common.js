@@ -29,7 +29,8 @@ module.exports = {
               hmr: devMode,
               reloadAll: true
             },
-          },'css-loader','less-loader']
+          },
+          'css-loader','less-loader']
       },
       {
         test:/\.css$/,
