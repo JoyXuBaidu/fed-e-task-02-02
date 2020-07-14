@@ -9,6 +9,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = merge({
   mode: 'production',
+  devtool: false,
   module: {
     rules: [
       {
