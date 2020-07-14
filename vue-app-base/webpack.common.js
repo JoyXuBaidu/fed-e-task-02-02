@@ -6,7 +6,6 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  mode: 'none',
   entry: './src/main.js',
   output: {
     filename: '[contenthash:8].bundle.js',
@@ -28,22 +27,15 @@ module.exports = {
           'vue-style-loader',
           'css-loader'
         ]
-      },
-      {
-        test:/\.(png|jpg|gif)$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 8 * 1024
-            }
-          }
-        ]
       }
     ]
   },
   plugins: [
     new VueLoaderPlugin(),
-    new CleanWebpackPlugin()
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      template: './public/index.html',
+      filename: 'index.html'
+    })
   ]
 }
