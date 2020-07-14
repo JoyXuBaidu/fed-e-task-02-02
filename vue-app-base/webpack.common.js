@@ -5,6 +5,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: './src/main.js',
@@ -40,6 +41,14 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: './css/[name].[contenthash:8].css'
+    }),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: 'public/*.ico',
+          to: './'
+        }
+      ]
     })
   ]
 }

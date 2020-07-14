@@ -5,7 +5,6 @@ const webpack = require('webpack');
 const { merge } = require('webpack-merge');
 
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
-const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = merge({
   mode: 'production',
@@ -33,14 +32,6 @@ module.exports = merge({
     }),
     new webpack.DefinePlugin({
       BASE_URL : JSON.stringify("./public/")
-    }),
-    new CopyPlugin({
-      patterns: [
-        {
-          from: 'public/*.ico',
-          to: './'
-        }
-      ]
     })
   ]
 },CommonConfig)
