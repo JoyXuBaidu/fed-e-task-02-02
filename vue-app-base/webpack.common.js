@@ -1,5 +1,6 @@
 /** @type {import('webpack').Configuration} */
 const path = require('path');
+const devMode = process.env.NODE_ENV ===  'development';
 
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
@@ -10,7 +11,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 module.exports = {
   entry: './src/main.js',
   output: {
-    filename: './js/bundle.[contenthash:8].js',
+    filename: devMode ? './js/bundle.[hash:8].js' : './js/bundle.[contenthash:8].js',
     path: `${__dirname}/dist`
   },
   module:{
@@ -21,7 +22,14 @@ module.exports = {
       },
       {
         test:/\.less$/,
-        use: [MiniCssExtractPlugin.loader,'css-loader','less-loader']
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              hmr: devMode,
+              reloadAll: true
+            },
+          },'css-loader','less-loader']
       },
       {
         test:/\.css$/,
@@ -40,7 +48,7 @@ module.exports = {
       filename: 'index.html'
     }),
     new MiniCssExtractPlugin({
-      filename: './css/[name].[contenthash:8].css'
+      filename: devMode ? './css/[name].[hash:8].css' :'./css/[name].[contenthash:8].css'
     }),
     new CopyPlugin({
       patterns: [

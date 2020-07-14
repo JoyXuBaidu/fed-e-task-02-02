@@ -9,9 +9,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = merge(CommonConfig,{
   mode: 'development',
-  output: {
-    filename: './js/bundle.[hash:8].js'
-  },
   module: {
     rules: [
       {
@@ -31,9 +28,7 @@ module.exports = merge(CommonConfig,{
     new webpack.DefinePlugin({
       BASE_URL : JSON.stringify("/public/")
     }),
-    new MiniCssExtractPlugin({
-      filename: './css/[name].[hash:8].css'
-    })
+    // new webpack.HotModuleReplacementPlugin()
   ],
   devServer: {
     contentBase: path.join(__dirname,'dist'),
