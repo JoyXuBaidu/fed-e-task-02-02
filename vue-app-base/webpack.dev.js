@@ -9,6 +9,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = merge(CommonConfig,{
   mode: 'development',
+  devtool: '#cheap-module-source-map',
   module: {
     rules: [
       {
@@ -23,7 +24,7 @@ module.exports = merge(CommonConfig,{
         ]
       },
     ]
-  }
+  },
   plugins: [
     new webpack.HotModuleReplacementPlugin()
   ],
