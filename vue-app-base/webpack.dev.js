@@ -9,6 +9,21 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = merge(CommonConfig,{
   mode: 'development',
+  module: {
+    rules: [
+      {
+        test: /\.(png|jpg|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              esModule: false
+            }
+          }
+        ]
+      },
+    ]
+  }
   plugins: [
     new webpack.HotModuleReplacementPlugin()
   ],
